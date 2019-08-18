@@ -22,7 +22,7 @@ switch(command){
             const response =data.tracks.items.map(arr =>{
                     console.log(`   Song title ${arr.name}
             Album Name:${arr.album.name}
-            Artist name: ${arr.artists[0].name}
+            Artist name: ${arr.artists.map(artist =>artist.name)}
             Hear the song: ${arr.href}
         
             `);
