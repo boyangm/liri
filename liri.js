@@ -1,6 +1,8 @@
 const dotenv = require("dotenv").config();
 const keys = require("./keys.js");
 const axios = require('axios');
+var moment = require('moment');
+
 
 const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
@@ -29,9 +31,11 @@ switch(command){
     .then(function (response) {
       // handle success
       const concert = response.data.map(arr =>{
-          console.log(arr.venue.name);
-          console.log(arr.venue.city);
-          console.log(arr.datetime);
+          const time =arr.datetime;
+          console.log(`Artist Name: ${input}
+         Venue Name: ${arr.venue.name}
+          City: ${arr.venue.city}
+          Time :${moment(time).format('llll')}`);
           
       })
     })
