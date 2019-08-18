@@ -8,7 +8,7 @@ const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
 
 const command = process.argv[2];
-const input = process.argv.splice(3).join('_');
+const input = process.argv.splice(3).join(' ');
 
 console.log(input);
 switch(command){
@@ -18,10 +18,12 @@ switch(command){
             return console.log('Error occurred: ' + err);
             }
         const response =data.tracks.items.map(arr =>{
-            console.log(`Song title ${arr.name}`);
-            console.log(` Album Name:${arr.album.name}`);
-            console.log(` Artist name: ${arr.artists[0].name}`);
-            console.log(`Hear the song: ${arr.href}`);
+            console.log(`   Song title ${arr.name}
+    Album Name:${arr.album.name}
+    Artist name: ${arr.artists[0].name}
+    Hear the song: ${arr.href}
+    
+    `);
         })
     
         });
@@ -38,6 +40,27 @@ switch(command){
           Time :${moment(time).format('llll')}`);
           
       })
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    break;
+    case 'movie-this':
+    axios.get(`http://www.omdbapi.com/?t="${input}&y=&plot=short&apikey=trilogy`)
+    .then(function (response) {
+        const movie = response.data;
+
+      console.log(`title: ${movie.title}
+Released: ${movie.Released}
+Rating:${movie.imdbRating}
+Rotten Tomatoes: ${movie.Ratings[2].value}
+Country : ${movie.Country}
+Launguage: ${movie.Language}
+Plot: ${movie.Plot}
+Actors: ${movie.Actors}
+      `)
+     
     })
     .catch(function (error) {
       // handle error
