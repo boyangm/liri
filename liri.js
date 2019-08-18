@@ -1,16 +1,18 @@
 const dotenv = require("dotenv").config();
 const keys = require("./keys.js");
 const axios = require('axios');
-var moment = require('moment');
+const moment = require('moment');
+const fs = require('fs');
 
 
 const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
 
-const command = process.argv[2];
-const input = process.argv.splice(3).join(' ');
+var command = process.argv[2];
+var input = process.argv.splice(3).join(' ');
 console.log(command);
 console.log(input);
+function liri(command){
 switch(command){
     case 'spotify-this-song':
         spotify.search({ type: 'track', query: `${input}`, limit: 5 }, function(err, data) {
@@ -67,6 +69,20 @@ Actors: ${movie.Actors}
       console.log(error);
     })
     break;
+case 'do-this':
+    fs.readFile('./random.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    arr= data.split(',');
+    command = arr[0];
+    input = arr[1].replace('"',"");
+    liri(command);
+    
+    console.log(command, input);
+  });
+break;
+
       
 
 } 
+}
+liri(command);
