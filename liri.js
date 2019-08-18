@@ -3,13 +3,11 @@ const keys = require("./keys.js");
 const axios = require('axios');
 const moment = require('moment');
 const fs = require('fs');
-
-
 const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
 
-var command = process.argv[2];
-var input = process.argv.splice(3).join(' ');
+let command = process.argv[2];
+let input = process.argv.splice(3).join(' ');
 console.log(command);
 console.log(input);
 function liri(command){
