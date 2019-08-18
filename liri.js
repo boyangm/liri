@@ -28,15 +28,17 @@ switch(command){
     axios.get('https://rest.bandsintown.com/artists/' + input + '/events?app_id=codingbootcamp')
     .then(function (response) {
       // handle success
-      console.log(response.data);
+      const concert = response.data.map(arr =>{
+          console.log(arr.venue.name);
+          console.log(arr.venue.city);
+          console.log(arr.datetime);
+          
+      })
     })
     .catch(function (error) {
       // handle error
       console.log(error);
     })
-    .finally(function () {
-      // always executed
-    });
     break;
       
 
