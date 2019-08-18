@@ -9,7 +9,7 @@ const spotify = new Spotify(keys.spotify);
 
 const command = process.argv[2];
 const input = process.argv.splice(3).join(' ');
-
+console.log(command);
 console.log(input);
 switch(command){
     case 'spotify-this-song':
@@ -30,7 +30,7 @@ switch(command){
       break;
     case 'concert-this':
     axios.get('https://rest.bandsintown.com/artists/' + input + '/events?app_id=codingbootcamp')
-    .then(function (response) {
+    .then( response => {
       // handle success
       const concert = response.data.map(arr =>{
           const time =arr.datetime;
@@ -41,20 +41,20 @@ switch(command){
           
       })
     })
-    .catch(function (error) {
+    .catch(error => {
       // handle error
       console.log(error);
     })
     break;
     case 'movie-this':
     axios.get(`http://www.omdbapi.com/?t="${input}&y=&plot=short&apikey=trilogy`)
-    .then(function (response) {
+    .then(response => {
         const movie = response.data;
 
-      console.log(`title: ${movie.title}
+      console.log(`title: ${movie.Title}
 Released: ${movie.Released}
 Rating:${movie.imdbRating}
-Rotten Tomatoes: ${movie.Ratings[2].value}
+Rotten Tomatoes: ${movie.Ratings[2].Value}
 Country : ${movie.Country}
 Launguage: ${movie.Language}
 Plot: ${movie.Plot}
@@ -62,7 +62,7 @@ Actors: ${movie.Actors}
       `)
      
     })
-    .catch(function (error) {
+    .catch(error => {
       // handle error
       console.log(error);
     })
