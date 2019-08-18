@@ -77,7 +77,7 @@ switch(command){
         input = arr[1].replace('"',"");
         liri(command,input);
         
-        console.log(command, input);
+        // console.log(command, input);
     });
 break;
 
