@@ -8,8 +8,8 @@ const spotify = new Spotify(keys.spotify);
 
 let command = process.argv[2];
 let input = process.argv.splice(3).join(' ');
-console.log(command);
-console.log(input);
+// console.log(command);
+// console.log(input);
 
 function liri(command,input=process.argv.splice(3).join(' ')){
 switch(command){
